@@ -1,6 +1,6 @@
 {
   "name": "vv-notify",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Notice stack for vue",
   "author": "Fakhreev Rafael <fahreevrafael@yandex.ru>",
   "private": true,
