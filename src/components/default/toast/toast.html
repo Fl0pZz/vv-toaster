@@ -1,0 +1,10 @@
+<div v-show="!hide" :style="{ order: id }">
+  <template v-for="message in messages">
+    <h6 v-if="message.header">{{ message.header }}</h6>
+    <span>{{ message.message }}</span>
+  </template>
+
+  <div v-if="!!actionClass" class="action">
+    <i :class="[actionClass === 'close' ? actionClass : '']">x</i>
+  </div>
+</div>
