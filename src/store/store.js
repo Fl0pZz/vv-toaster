@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import noticesStore from './notices/index'
+import notification from './notifications/index'
+import toast from './toasts/index'
 
 Vue.use(Vuex)
 
@@ -10,17 +11,20 @@ const debug = process.env.NODE_ENV !== 'production'
 const store = new Vuex.Store({
   strict: debug,
   modules: {
-    notice: noticesStore
+    notification,
+    toast
   }
 })
 
 if (module.hot) {
   module.hot.accept([
-    './modules/notices/index'
+    './notifications/index',
+    './toasts/index'
   ], () => {
     store.hotUpdate({
       modules: {
-        notice: require('./modules/notices/index').default
+        notification: require('./notifications/index').default,
+        toast: require('./toasts/index').default
       }
     })
   })

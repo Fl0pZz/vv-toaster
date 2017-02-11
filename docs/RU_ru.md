@@ -1,10 +1,12 @@
 ### А что это такое?
-Это стек для уведомлений, написанный на `vue` + `vuex`
+Это стек для уведомлений, написанный на `vue` + `vuex`.
+Его особенностью является возможность обновления уже показываемых уведомлений
 
 ## Api
 ### Структура уведовления
 Каждое уведомление имеет следующую структуру:
 ```js
+// notice
 {
   type,
   messages: [{
@@ -26,17 +28,26 @@
 * NO - без действий
 * CLOSE
 
-### Actions
+### Functions
 #### `push([option])`
 Добавить уведомление в очередь:
 * notice \<Object>
 
-#### 'get([option])'
+Возвращаемое значение:
+* id \<Number> - идентификатор уведомления
+
+#### `get([option])`
 Возвращает и удаляет уведомление с заданным `id`:
 * id \<Number>
 
-#### 'shift()'
+Возвращаемое значение:
+* notice \<Object>
+
+#### `pop_back()`
 Возвращает и удаляет самое старое уведомление, которе находит в очереди
+
+Возвращаемое значение:
+* { id, notice }
 
 #### `update([option])`
 Обновляет выбранное уведомление:
@@ -47,7 +58,10 @@
   }
 ```
 
-### wrappers
+Возвращаемое значение:
+* success \<Bool>
+
+### Wrappers
 Для того, чтобы каждый раз не писать:
 ```js
 import store from './store'
@@ -57,14 +71,49 @@ store.dispatch('notice/push', notice)
 Я написал пару оберток и теперь это выглядит так:
 ```js
 import { pushInfo } from './notice-wrappers'
-
+...
 pushInfo(messages)
 ```
+
+#### `pushNotice([option])`
+* notice \<Object>
+
+Возвращаемое значение:
+* id \<Number> - идентификатор уведомления
 
 #### `pushInfo([options])`
 * messages \<Array> - список сообщений вида `{ header, message }`
 * action <String> (default: __NO__) - действие
 
+Возвращаемое значение:
+* id \<Number> - идентификатор уведомления
+
 #### `pushError([options])`
 * messages \<Array> - список сообщений вида `{ header, message }`
 * action <String> (default: __CLOSE__) - действие
+
+Возвращаемое значение:
+* id \<Number> - идентификатор уведомления
+
+#### `updateNotice([options])`
+* id \<Number> - идентификатор сообщения
+* notice \<Object>
+
+Возвращаемое значение:
+* success \<Bool>
+
+#### `updateInfo([options])`
+* id \<Number> - идентификатор сообщения
+* messages \<Array> - список сообщений вида `{ header, message }`
+* action <String> (default: __NO__) - действие
+
+Возвращаемое значение:
+* success \<Bool>
+
+#### `updateError([options])`
+* id \<Number> - идентификатор сообщения
+* messages \<Array> - список сообщений вида `{ header, message }`
+* action <String> (default: __CLOSE__) - действие
+
+Возвращаемое значение:
+* success \<Bool>

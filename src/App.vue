@@ -1,13 +1,19 @@
-<template>
+<template lang="html">
   <div id="app">
-    <hello></hello>
+    <pusher></pusher>
+    <toast-manager></toast-manager>
   </div>
 </template>
 
-<script>
+<script lang="babel">
+import ToastManager from 'components/default/ToastManager'
+import Pusher from 'components/pusher/Pusher'
 
 export default {
   name: 'app',
-  components: {}
+  components: {
+    ToastManager,
+    Pusher
+  }
 }
 </script>

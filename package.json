@@ -1,5 +1,5 @@
 {
-  "name": "vv-notify",
+  "name": "vv-toaster",
   "version": "0.1.0",
   "description": "Notice stack for vue",
   "author": "Fakhreev Rafael <fahreevrafael@yandex.ru>",
@@ -13,7 +13,6 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "fs": "^0.0.1-security",
     "vue": "^2.1.10",
     "vuex": "^2.1.2"
   },
