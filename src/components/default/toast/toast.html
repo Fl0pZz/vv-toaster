@@ -1,10 +1,10 @@
-<div v-show="!hide" :style="{ order: id }">
-  <template v-for="message in messages">
+<div :style="{ order: toast.id }">
+  <template v-for="message in toast.messages">
     <h6 v-if="message.header">{{ message.header }}</h6>
     <span>{{ message.message }}</span>
   </template>
 
-  <div v-if="!!actionClass" class="action">
-    <i :class="[actionClass === 'close' ? actionClass : '']">x</i>
+  <div v-if="toast.action" class="action">
+    <i :class="toast.actionClass()" @click="toast.destroy()">x</i>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="notices-container">
-  <template v-for="i in toastStackSize">
-    <toast :index="i - 1" ></toast>
+  <template v-for="toast in toastList">
+    <toast-item :toast="toast" ></toast-item>
   </template>
 </div>

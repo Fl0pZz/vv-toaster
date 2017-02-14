@@ -1,40 +1,65 @@
-import { mapGetters } from 'vuex'
-import Toast from './toast/Toast'
-import { DISPLAY } from 'store/toasts/toast-mutation-types'
+import { mapGetters, mapActions } from 'vuex'
+import Toast from './toast/ToastClass'
+import ToastItem from './toast/ToastItem'
+import * as nTypes from 'store/notifications/notification-types'
 
 const MAX_NOTICES = 5
+const MAX_SHOW_INFO = 4000
+const MAX_SHOW_ERROR = Infinity
 
 export default {
   name: 'toast-manager',
-  components: {
-    Toast
-  },
+  components: { ToastItem },
+  data: () => ({
+    count: 0,
+    toastList: []
+  }),
+
   watch: {
     isEmpty (empty) {
-      if (!empty && this.$store.getters['toast/canDisplay']) {
-        console.log('is not empty')
-        this.$store.dispatch('notification/pop_back')
-          .then(pair => { this.$store.commit('toast/' + DISPLAY, pair) })
-      }
-    },
-
-    canDisplay (able) {
-      if (able && !this.$store.getters['notification/isEmpty']) {
-        console.log('is able')
-        this.$store.dispatch('notification/pop_back')
-          .then(pair => { this.$store.commit(DISPLAY, pair) })
-      }
+      if (!empty && ( this.count < MAX_NOTICES )) this.addToast()
     }
-  },
-  created () {
-    this.$store.dispatch('toast/init', MAX_NOTICES)
   },
 
   computed: {
-    ...mapGetters({
-      isEmpty: 'notification/isEmpty',
-      canDisplay: 'toast/canDisplay',
-      toastStackSize: 'toast/toastStackSize'
-    })
+    ...mapGetters({ isEmpty: 'notification/isEmpty' })
+  },
+
+  methods: {
+    _checkNotifications () {
+      if (!this.$store.getters['notification/isEmpty']) this.addToast()
+    },
+
+    _defineToastLifeTime ({ type }) {
+      switch (type) {
+        case nTypes.INFO:
+          return MAX_SHOW_INFO
+        case nTypes.ERROR:
+          return MAX_SHOW_ERROR
+        default:
+          throw new Error('Unknown notice action type')
+      }
+    },
+
+    addToast () {
+      this.pop_back().then(pair => {
+        const time = this._defineToastLifeTime(pair.notification)
+        const destroyCb = () => { this.removeToast(pair.id) }
+        const toast = new Toast(pair, time, destroyCb)
+        this.count = this.toastList.push(toast)
+      })
+    },
+
+    removeToast (id) {
+      const toastIndex = this.toastList.findIndex(item => item.id === id)
+      if (toastIndex === -1) {
+        this._checkNotifications()
+        return
+      }
+      this.toastList.splice(toastIndex, 1)
+      this._checkNotifications()
+    },
+
+    ...mapActions({ pop_back: 'notification/pop_back' })
   }
 }
