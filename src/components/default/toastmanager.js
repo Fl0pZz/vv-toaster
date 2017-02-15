@@ -1,4 +1,4 @@
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 import Toast from './toast/ToastClass'
 import ToastItem from './toast/ToastItem'
 import * as nTypes from 'store/notifications/notification-types'
@@ -21,23 +21,22 @@ export default {
     },
 
     updated (id) {
+      if (!id) return
       const toastIndex = this.toastList.findIndex(item => item.id === id)
-      if (toastIndex !== -1) {
-        this.updated(id)
-      }
+      if (toastIndex !== -1) this.updateToast(id)
     }
   },
 
   computed: {
     ...mapGetters({
       isEmpty: 'notification/isEmpty',
-      updated: 'notification/updated'
+      updated: 'notification/lastUpdated'
     })
   },
 
   methods: {
     _checkNotifications () {
-      if (!this.$store.getters['notification/isEmpty']) this.addToast()
+      if (!this.isEmpty && ( this.count < MAX_NOTICES )) this.addToast()
     },
 
     _defineToastLifeTime ({ type }) {
@@ -61,12 +60,7 @@ export default {
     },
 
     updateToast (id) {
-      this.get(id).then(notification => {
-        const time = this._defineToastLifeTime(notification)
-        const destroyCb = () => { this.removeToast(id) }
-        const toast = new Toast({ id, notification }, time, destroyCb)
-        this.toastList[id] = toast
-      })
+      this.get(id).then(notification => { this.toastList[id].update(notification) })
     },
 
     removeToast (id) {
@@ -76,12 +70,14 @@ export default {
         return
       }
       this.toastList.splice(toastIndex, 1)
+      this.del(id)
       this._checkNotifications()
     },
 
     ...mapActions({
       pop_back: 'notification/pop_back',
-      get: 'notification/get'
+      get: 'notification/get',
+      del: 'notification/del'
     })
   }
 }

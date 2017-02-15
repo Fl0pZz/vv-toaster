@@ -1,11 +1,11 @@
 export default class Toast {
-  constructor ({ id, notification }, time, desctroyCb = null) {
+  constructor ({ id, notification }, time, destroyCb = null) {
     let { type, messages, action } = notification
     this.id = id
     this.type = type
     this.messages = messages
     this.action = action
-    this.$destroyCb = desctroyCb
+    this.$destroyCb = destroyCb
     if (time !== Infinity) setTimeout(() => this.destroy(), time)
   }
 
@@ -15,6 +15,13 @@ export default class Toast {
 
   typeClass () {
     return this.type.toLowerCase()
+  }
+
+  update ({ type, messages, action }, destroyCb = this.$destroyCb) {
+    this.type = type
+    this.messages = messages
+    this.action = action
+    this.$destroyCb = destroyCb
   }
 
   destroy () {

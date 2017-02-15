@@ -2,12 +2,12 @@
     <div>
         <a @click="pushI()">Отправить уведомление</a>
         <a @click="pushE()">Отправить ошибку</a>
-        <a @click="updateI()">Обновить c id = 0</a>
+        <a @click="updateE(1)">Обновить c id = 1</a>
     </div>
 </template>
 
 <script lang="babel">
-  import { pushInfo, pushError, updateInfo } from 'store/notifications/notification-wrappers'
+  import { pushInfo, pushError, updateError } from 'store/notifications/notification-wrappers'
 
   export default{
     name: 'pusher',
@@ -20,9 +20,9 @@
         const messages = [{ header: 'ERROR', message: 'Error world!' }]
         pushError(messages)
       },
-      updateI (id = 0) {
+      updateE (id = 0) {
         const messages = [{ header: 'INFO', message: 'Hello' }]
-        updateInfo(id, messages)
+        updateError(id, messages)
       }
     }
   }
