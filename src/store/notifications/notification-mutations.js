@@ -16,6 +16,7 @@ export default {
 
   [types.UPDATE] (state, { id, notification }) {
     state._notifications.set(id, notification)
+    state.updated = id
   },
 
   [types.DELETE] (state, id) {
@@ -26,12 +27,14 @@ export default {
     if (state._notifications.size !== 0) {
       // если в очереди еще есть уведомления, то переводим указатель на следующее уведомление
       state._old_id++
+      if (state.updated === id) state.updated = null
     } else {
       // если уведомлений нет, обнуляем стек уведомлений, чтобы _old_id и _id были равны 0
       state._id = 0
       state._notifications.clear()
       state._old_id = null
       state._size = 0
+      state.updated = null
     }
   }
 }

@@ -18,11 +18,21 @@ export default {
   watch: {
     isEmpty (empty) {
       if (!empty && ( this.count < MAX_NOTICES )) this.addToast()
+    },
+
+    updated (id) {
+      const toastIndex = this.toastList.findIndex(item => item.id === id)
+      if (toastIndex !== -1) {
+        this.updated(id)
+      }
     }
   },
 
   computed: {
-    ...mapGetters({ isEmpty: 'notification/isEmpty' })
+    ...mapGetters({
+      isEmpty: 'notification/isEmpty',
+      updated: 'notification/updated'
+    })
   },
 
   methods: {
@@ -50,6 +60,15 @@ export default {
       })
     },
 
+    updateToast (id) {
+      this.get(id).then(notification => {
+        const time = this._defineToastLifeTime(notification)
+        const destroyCb = () => { this.removeToast(id) }
+        const toast = new Toast({ id, notification }, time, destroyCb)
+        this.toastList[id] = toast
+      })
+    },
+
     removeToast (id) {
       const toastIndex = this.toastList.findIndex(item => item.id === id)
       if (toastIndex === -1) {
@@ -60,6 +79,9 @@ export default {
       this._checkNotifications()
     },
 
-    ...mapActions({ pop_back: 'notification/pop_back' })
+    ...mapActions({
+      pop_back: 'notification/pop_back',
+      get: 'notification/get'
+    })
   }
 }
