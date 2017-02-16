@@ -1,4 +1,4 @@
-import { mapGetters, mapActions, mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Toast from './toast/ToastClass'
 import ToastItem from './toast/ToastItem'
 import * as nTypes from 'store/notifications/notification-types'
@@ -69,9 +69,11 @@ export default {
         this._checkNotifications()
         return
       }
-      this.toastList.splice(toastIndex, 1)
-      this.del(id)
-      this._checkNotifications()
+      this.del(id).then(() => {
+        this.toastList.splice(toastIndex, 1)
+        --this.count
+        this._checkNotifications()
+      })
     },
 
     ...mapActions({

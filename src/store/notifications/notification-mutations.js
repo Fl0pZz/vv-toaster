@@ -1,13 +1,6 @@
 import * as types from './notification-mutation-types'
 import { isEmpty } from './notification-getters'
 
-const clearState = state => {
-  state._id = 0
-  state._notifications.clear()
-  state._old_id = null
-  state.updated = null
-}
-
 export default {
   [types.PUSH] (state, notification) {
     if (state._old_id === null) state._old_id = state._id
@@ -26,15 +19,12 @@ export default {
 
   [types.NEXT] (state) {
     if (!isEmpty(state)) state._old_id++
-    else clearState()
   },
 
   [types.DELETE] (state, id) {
     // так как мутация не имеет возвращаемого значения, проверка реализована в actions
     state._notifications.delete(id)
     if (state.updated === id) state.updated = null
-
-    if (!isEmpty(state)) state._old_id++
-    else clearState(state)
+    if (!isEmpty(state) && (id === state._old_id)) state._old_id++
   }
 }
