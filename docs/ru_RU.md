@@ -199,7 +199,10 @@ let id = pushNotice(notification)
 ```
 
 #### `pushInfo([options])`
-* `messages <Array>` - список сообщений вида `{ header, message }`
+* `messages`:
+ * `<Array>` - список сообщений вида `{ header, message }`
+ * `<Object>` - одно сообщение вида `{ header, message }`
+ * `<String>` - сообщение вида `String('text')` или `'text'` (по умолчанию заголовок `INFO`)
 * `action <String>` (default: __NO__) - действие
 
 Возвращаемое значение:
@@ -210,7 +213,10 @@ let id = pushNotice(notification)
 // #1
 import { pushInfo } from './notification-wrappers'
 // ...
-let id = pushInfo(messages)
+let id1 = pushInfo([{ header, message }])
+let id2 = pushInfo({ header, message })
+let id3 = pushInfo(new String('message text'))
+let id4 = pushInfo('message text')
 
 // #2
 import * as actions from './notification-action-types'
@@ -218,7 +224,10 @@ let id2 = pushInfo(messages, actions.CLOSE)
 ```
 
 #### `pushError([options])`
-* `messages <Array>` - список сообщений вида `{ header, message }`
+* `messages`:
+ * `<Array>` - список сообщений вида `{ header, message }`
+ * `<Object>` - одно сообщение вида `{ header, message }`
+ * `<String>` - сообщение вида `String('text')` или `'text'` (по умолчанию заголовок `ERROR`)
 * `action <String>` (default: __CLOSE__) - действие
 
 Возвращаемое значение:
@@ -229,7 +238,10 @@ let id2 = pushInfo(messages, actions.CLOSE)
 // #1
 import { pushError } from './notification-wrappers'
 // ...
-let id = pushError(messages)
+let id1 = pushError([{ header, message }])
+let id2 = pushError({ header, message })
+let id3 = pushError(new String('message text'))
+let id4 = pushError('message text')
 
 // #2
 import * as actions from './notification-action-types'
@@ -252,7 +264,10 @@ updateNotice(id, notification)
 
 #### `updateInfo([options])`
 * `id <Number>` - идентификатор сообщения
-* `messages <Array>` - список сообщений вида `{ header, message }`
+* `messages`:
+ * `<Array>` - список сообщений вида `{ header, message }`
+ * `<Object>` - одно сообщение вида `{ header, message }`
+ * `<String>` - сообщение вида `String('text')` или `'text'` (по умолчанию заголовок `INFO`)
 * `action <String>` (default: __NO__) - действие
 
 Возвращаемое значение:
@@ -263,7 +278,10 @@ updateNotice(id, notification)
 // #1
 import { updateInfo } from './notification-wrappers'
 // ...
-updateInfo(id, messages)
+updateInfo(id, [{ header, message }])
+updateInfo(id, { header, message })
+updateInfo(id, new String('message text'))
+updateInfo(id, 'message text')
 
 // #2
 import * as actions from './notification-action-types'
@@ -272,7 +290,10 @@ updateInfo(id, messages, actions.CLOSE)
 
 #### `updateError([options])`
 * `id <Number>` - идентификатор сообщения
-* `messages <Array>` - список сообщений вида `{ header, message }`
+* `messages`:
+ * `<Array>` - список сообщений вида `{ header, message }`
+ * `<Object>` - одно сообщение вида `{ header, message }`
+ * `<String>` - сообщение вида `String('text')` или `'text'` (по умолчанию заголовок `ERROR`)
 * `action <String>` (default: __CLOSE__) - действие
 
 Возвращаемое значение:
@@ -283,7 +304,10 @@ updateInfo(id, messages, actions.CLOSE)
 // #1
 import { updateError } from './notification-wrappers'
 // ...
-updateError(id, messages)
+updateError(id, [{ header, message }])
+updateError(id, { header, message })
+updateError(id, new String('message text'))
+updateError(id, 'message text')
 
 // #2
 import * as actions from './notification-action-types'
