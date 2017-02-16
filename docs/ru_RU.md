@@ -33,6 +33,15 @@ pushInfo({ header: 'header', message: 'Hello world!' })
 И все?
 И все.
 
+### А как установить?
+```bash
+// yarn
+yarn add vv-toaster
+
+// npm
+npm i vv-toaster
+```
+
 ## API
 ### Структура уведомления
 Каждое уведомление имеет следующую структуру:
