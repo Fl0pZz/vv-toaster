@@ -1,7 +1,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import Toast from '../toast/ToastClass'
 import ToastItem from '../toast/ToastItem'
-import * as nTypes from 'notifications/notification-types'
+import * as nTypes from '../../../store/notifications/notification-types'
 
 const MAX_NOTICES = 5
 const MAX_SHOW_INFO = 4000

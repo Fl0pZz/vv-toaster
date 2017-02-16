@@ -1,4 +1,4 @@
-import * as actions from 'notifications/notification-action-types'
+import * as actions from '../../../store/notifications/notification-action-types'
 
 export default class Toast {
   constructor ({ id, notification }, time, destroyCb = null) {
