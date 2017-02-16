@@ -18,25 +18,23 @@ export default {
 Добавляем в шаблончик:
 ```html
 <!-- my-component.html -->
-
 <div>
   <toaster></toaster>
 </div>
 ```
 
-Теперь, если в какой-то другой компоненте вы хотите вывести уведомление:
+Теперь, если в какой-то другой компоненте вы хотите вывести уведомление (возьмем `pushInfo` из [Wrappers](#wrappers)):
 ```js
 import { pushInfo } from 'store/notifications/notification-wrappers'
 
 // ...
-let messages = [{ header: 'header', message: 'Hello world!' }]
-pushInfo(messages)
+pushInfo({ header: 'header', message: 'Hello world!' })
 ```
 И все?
 И все.
 
 ## API
-### Структура уведовления
+### Структура уведомления
 Каждое уведомление имеет следующую структуру:
 ```js
 // notification
@@ -56,11 +54,11 @@ header = 'Header text'
 header = '<span class="red">Header text</span>'
 ```
 #### `type`
-Содержит информацию о типе уведомления, используется для кастомизации внешнего вида.
+Содержит информацию о типе уведомления, используется для кастомизации внешнего вида и еще много где.
 
 Типы по умолчанию (смотри `notification-types.js`):
-* `INFO`
-* `ERROR`
+* `INFO` - скрывает уведомление через 4 секунды после появления
+* `ERROR` - висит, пока не закроешь (по умолчанию)
 
 #### `action`
 Содержит информацию о типе действия, которое можно совершить с уведомлением.
@@ -110,7 +108,7 @@ store.dispatch('notification/get', id)
 Возвращает самое старое уведомление, которе находит в очереди.
 
 Возвращаемое значение:
-* `{ id, notice }`
+* `{ id, notification }`
 
 Пример использования:
 ```js
@@ -130,7 +128,7 @@ store.dispatch('notification/pop_back')
 ```
 
 Возвращаемое значение:
-* `success \<Bool>`
+* `success <Bool>`
 
 Пример использования:
 ```js
@@ -186,7 +184,7 @@ module.exports = {
 `build/webpack.base.conf.js`.
 
 #### `pushNotice([option])`
-* `notification \<Object>`
+* `notification <Object>`
 
 Возвращаемое значение:
 * `id <Number>` - идентификатор уведомления
