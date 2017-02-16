@@ -1,3 +1,5 @@
+import * as actions from 'store/notifications/notification-action-types'
+
 export default class Toast {
   constructor ({ id, notification }, time, destroyCb = null) {
     let { type, messages, action } = notification
@@ -15,6 +17,10 @@ export default class Toast {
 
   typeClass () {
     return this.type.toLowerCase()
+  }
+
+  hasAction () {
+    return this.action !== actions.NO
   }
 
   update ({ type, messages, action }, destroyCb = this.$destroyCb) {

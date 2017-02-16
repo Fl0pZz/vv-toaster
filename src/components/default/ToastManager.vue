@@ -13,10 +13,4 @@
     top: 5%;
     right: 5%;
   }
-
-  .notice {
-    width: 300px;
-    height: 100px;
-    border: 1px solid black;
-  }
 </style>
