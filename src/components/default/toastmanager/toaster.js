@@ -21,7 +21,7 @@ export default {
     },
 
     updated (id) {
-      if (!id) return
+      if (id === null) return
       const toastIndex = this.toastList.findIndex(item => item.id === id)
       if (toastIndex !== -1) this.updateToast(id)
     }
@@ -60,7 +60,8 @@ export default {
     },
 
     updateToast (id) {
-      this.get(id).then(notification => { this.toastList[id].update(notification) })
+      const toastIndex = this.toastList.findIndex(item => item.id === id)
+      this.get(id).then(notification => { this.toastList[toastIndex].update(notification) })
     },
 
     removeToast (id) {

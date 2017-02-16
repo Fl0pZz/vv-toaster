@@ -1,0 +1,34 @@
+<div>
+  <p>
+    Заголовок уведомления:
+    <input v-model="notification.messages.header">
+  </p>
+
+  <p>
+    Текс уведомления:
+    <input v-model="notification.messages.message">
+  </p>
+
+  <p>
+    Тип уведомления:
+    <select v-model="notification.type">
+      <option v-for="option in nTypes" :value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
+  </p>
+
+  <p>
+    Действие уведомления:
+    <select v-model="notification.action">
+      <option v-for="option in nActionTypes" :value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
+  </p>
+
+  <p><button @click="push()">Отправить уведомление</button></p>
+  <p><button @click="pushI()">Отправить обычное уведомление</button></p>
+  <p><button @click="pushE()">Отправить ошибку</button></p>
+  <p><button @click="updateE()">Обновить уведомление с type=ERROR</button></p>
+</div>
