@@ -2,6 +2,39 @@
 Это стек для уведомлений, написанный на `vue` + `vuex`.
 Его особенностью является возможность обновления уже показываемых уведомлений
 
+### А как это использовать?
+Очень просто!
+Импортируем компоненту `Toaster.vue`, которая управляет процессом вывода уведомлений:
+```js
+// my-component.js
+import Toaster from 'components/default/toastmanager/Toaster'
+
+export defaul {
+  // ...
+  components: { Toaster }
+}
+```
+
+Добавляем в шаблончик:
+```html
+<!-- my-component.html -->
+
+<div>
+  <toaster></toaster>
+</div>
+```
+
+Теперь, если в какой-то другой компоненте вы хотите вывести уведомление:
+```js
+import { pushInfo } from 'store/notifications/notification-wrappers'
+
+// ...
+let messages = [{ header: 'header', message: 'Hello world!' }]
+pushInfo(messages)
+```
+И все?
+И все.
+
 ## Api
 ### Структура уведовления
 Каждое уведомление имеет следующую структуру:
@@ -131,6 +164,23 @@ import { pushInfo } from './notification-wrappers'
 // ...
 pushInfo(messages)
 ```
+
+Однако, чтобы это заработало, немножко изменим кофиг `webpack`:
+```js
+module.exports = {
+  // ...
+  resolve: {
+    // ...
+    alias: {
+      // ...
+      'store': resolve('src/store') // добавьте вот эту строчку
+    }
+  },
+  // ...
+}
+```
+Если вы используете `vue-cli`, то такие изменения нужны только в файле
+`build/webpack.base.conf.js`.
 
 #### `pushNotice([option])`
 * `notification \<Object>`

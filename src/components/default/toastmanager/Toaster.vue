@@ -1,6 +1,6 @@
-<template src="./toastmanager.html" />
+<template src="./toaster.html" />
 
-<script src="./toastmanager.js"></script>
+<script src="./toaster.js"></script>
 
 <style lang="css">
   .notices-container {
