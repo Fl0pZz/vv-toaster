@@ -27,12 +27,10 @@ export default {
     }
   },
 
-  computed: {
-    ...mapGetters({
+  computed: mapGetters({
       isEmpty: 'notification/isEmpty',
       updated: 'notification/lastUpdated'
-    })
-  },
+    }),
 
   methods: {
     _checkNotifications () {
