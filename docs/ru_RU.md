@@ -7,7 +7,7 @@
 Импортируем компоненту `Toaster.vue`, которая управляет процессом вывода уведомлений:
 ```js
 // my-component.js
-import Toaster from 'components/default/toastmanager/Toaster'
+import Toaster from 'vv-toaster/src/components/default/toastmanager/Toaster'
 
 export default {
   // ...
@@ -25,7 +25,7 @@ export default {
 
 Теперь, если в какой-то другой компоненте вы хотите вывести уведомление (возьмем `pushInfo` из [Wrappers](#wrappers)):
 ```js
-import { pushInfo } from 'store/notifications/notification-wrappers'
+import { pushInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 
 // ...
 pushInfo({ header: 'header', message: 'Hello world!' })
@@ -161,7 +161,7 @@ store.dispatch('notification/push', notification)
 ```
 Я написал пару оберток и теперь это выглядит так:
 ```js
-import { pushInfo } from './notification-wrappers'
+import { pushInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 pushInfo(messages)
 ```
@@ -174,7 +174,7 @@ module.exports = {
     // ...
     alias: {
       // ...
-      'store': resolve('src/store') // добавьте вот эту строчку
+      'store': path.join(__dirname, 'src/store') // добавьте вот эту строчку
     }
   },
   // ...
@@ -191,7 +191,7 @@ module.exports = {
 
 Примеры использования:
 ```js
-import { pushInfo } from './notification-wrappers'
+import { pushInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 let id = pushNotice(notification)
 ```
@@ -209,7 +209,7 @@ let id = pushNotice(notification)
 Примеры использования:
 ```js
 // #1
-import { pushInfo } from './notification-wrappers'
+import { pushInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 let id1 = pushInfo([{ header, message }])
 let id2 = pushInfo({ header, message })
@@ -217,7 +217,7 @@ let id3 = pushInfo(new String('message text'))
 let id4 = pushInfo('message text')
 
 // #2
-import * as actions from './notification-action-types'
+import * as actions from 'vv-toaster/src/store/notifications/notification-action-types'
 let id2 = pushInfo(messages, actions.CLOSE)
 ```
 
@@ -234,7 +234,7 @@ let id2 = pushInfo(messages, actions.CLOSE)
 Примеры использования:
 ```js
 // #1
-import { pushError } from './notification-wrappers'
+import { pushError } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 let id1 = pushError([{ header, message }])
 let id2 = pushError({ header, message })
@@ -242,7 +242,7 @@ let id3 = pushError(new String('message text'))
 let id4 = pushError('message text')
 
 // #2
-import * as actions from './notification-action-types'
+import * as actions from 'vv-toaster/src/store/notifications/notification-action-types'
 let id2 = pushError(messages, actions.NO)
 ```
 
@@ -255,7 +255,7 @@ let id2 = pushError(messages, actions.NO)
 
 Примеры использования:
 ```js
-import { pushInfo } from './notification-wrappers'
+import { pushInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 updateNotice(id, notification)
 ```
@@ -274,7 +274,7 @@ updateNotice(id, notification)
 Примеры использования:
 ```js
 // #1
-import { updateInfo } from './notification-wrappers'
+import { updateInfo } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 updateInfo(id, [{ header, message }])
 updateInfo(id, { header, message })
@@ -282,7 +282,7 @@ updateInfo(id, new String('message text'))
 updateInfo(id, 'message text')
 
 // #2
-import * as actions from './notification-action-types'
+import * as actions from 'vv-toaster/src/store/notifications/notification-action-types'
 updateInfo(id, messages, actions.CLOSE)
 ```
 
@@ -300,7 +300,7 @@ updateInfo(id, messages, actions.CLOSE)
 Примеры использования:
 ```js
 // #1
-import { updateError } from './notification-wrappers'
+import { updateError } from 'vv-toaster/src/store/notifications/notification-wrappers'
 // ...
 updateError(id, [{ header, message }])
 updateError(id, { header, message })
@@ -308,6 +308,6 @@ updateError(id, new String('message text'))
 updateError(id, 'message text')
 
 // #2
-import * as actions from './notification-action-types'
+import * as actions from 'vv-toaster/src/store/notifications/notification-action-types'
 updateError(id, messages, actions.NO)
 ```
