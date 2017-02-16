@@ -9,7 +9,8 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    // app: './src/main.js'
+    app: './examples/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -29,7 +30,9 @@ module.exports = {
       'src': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
-      'store': resolve('src/store')
+      'store': resolve('examples/store'),
+      'examples': resolve('examples'),
+      'notifications': resolve('src/store/notifications')
     }
   },
   module: {

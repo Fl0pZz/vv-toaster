@@ -7,7 +7,7 @@
 
 <script lang="babel">
 import Toaster from 'components/default/toastmanager/Toaster'
-import Pusher from 'components/pusher/Pusher'
+import Pusher from 'examples/components/pusher/Pusher'
 
 export default {
   name: 'app',

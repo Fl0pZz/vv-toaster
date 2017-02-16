@@ -3,13 +3,13 @@
 Его особенностью является возможность обновления уже показываемых уведомлений
 
 ### А как это использовать?
-Очень просто!
+А очень просто!
 Импортируем компоненту `Toaster.vue`, которая управляет процессом вывода уведомлений:
 ```js
 // my-component.js
 import Toaster from 'components/default/toastmanager/Toaster'
 
-export defaul {
+export default {
   // ...
   components: { Toaster }
 }
@@ -35,11 +35,11 @@ pushInfo(messages)
 И все?
 И все.
 
-## Api
+## API
 ### Структура уведовления
 Каждое уведомление имеет следующую структуру:
 ```js
-// notice
+// notification
 {
   type,
   messages: [{
@@ -56,13 +56,15 @@ header = 'Header text'
 header = '<span class="red">Header text</span>'
 ```
 #### `type`
-Содержит информацию о типе уведомления, используется для кастомизации внешнего вида
+Содержит информацию о типе уведомления, используется для кастомизации внешнего вида.
+
 Типы по умолчанию (смотри `notification-types.js`):
 * `INFO`
 * `ERROR`
 
 #### `action`
-Содержит информацию о типе действия, которое можно совершить с уведомлением
+Содержит информацию о типе действия, которое можно совершить с уведомлением.
+
 Действия по умолчанию (смотри `notification-action-types.js`):
 * `NO` - без действий
 * `CLOSE` - скрыть уведомление
@@ -74,10 +76,10 @@ header = '<span class="red">Header text</span>'
 
 #### `push([option])`
 Параметры:
-* `notice \<Object>`
+* `notice <Object>`
 
 Возвращаемое значение:
-* `id \<Number>` - идентификатор уведомления
+* `id <Number>` - идентификатор уведомления
 
 Пример использования:
 ```js
@@ -92,10 +94,10 @@ store.dispatch('notification/push', notification)
 
 #### `get([option])`
 Возвращает уведомление с заданным `id`:
-* `id \<Number>`
+* `id <Number>`
 
 Возвращаемое значение:
-* `notice \<Object>`
+* `notice <Object>`
 
 Пример использования:
 ```js
@@ -105,7 +107,8 @@ store.dispatch('notification/get', id)
 ```
 
 #### `pop_back()`
-Возвращает самое старое уведомление, которе находит в очереди
+Возвращает самое старое уведомление, которе находит в очереди.
+
 Возвращаемое значение:
 * `{ id, notice }`
 
@@ -186,7 +189,7 @@ module.exports = {
 * `notification \<Object>`
 
 Возвращаемое значение:
-* `id \<Number>` - идентификатор уведомления
+* `id <Number>` - идентификатор уведомления
 
 Примеры использования:
 ```js
@@ -196,11 +199,11 @@ let id = pushNotice(notification)
 ```
 
 #### `pushInfo([options])`
-* `messages \<Array>` - список сообщений вида `{ header, message }`
+* `messages <Array>` - список сообщений вида `{ header, message }`
 * `action <String>` (default: __NO__) - действие
 
 Возвращаемое значение:
-* `id \<Number>` - идентификатор уведомления
+* `id <Number>` - идентификатор уведомления
 
 Примеры использования:
 ```js
@@ -215,11 +218,11 @@ let id2 = pushInfo(messages, actions.CLOSE)
 ```
 
 #### `pushError([options])`
-* `messages \<Array>` - список сообщений вида `{ header, message }`
+* `messages <Array>` - список сообщений вида `{ header, message }`
 * `action <String>` (default: __CLOSE__) - действие
 
 Возвращаемое значение:
-* `id \<Number>` - идентификатор уведомления
+* `id <Number>` - идентификатор уведомления
 
 Примеры использования:
 ```js
@@ -234,11 +237,11 @@ let id2 = pushError(messages, actions.NO)
 ```
 
 #### `updateNotice([options])`
-* `id \<Number>` - идентификатор сообщения
-* `notification \<Object>`
+* `id <Number>` - идентификатор сообщения
+* `notification <Object>`
 
 Возвращаемое значение:
-* `success \<Bool>`
+* `success <Bool>`
 
 Примеры использования:
 ```js
@@ -248,12 +251,12 @@ updateNotice(id, notification)
 ```
 
 #### `updateInfo([options])`
-* `id \<Number>` - идентификатор сообщения
-* `messages \<Array>` - список сообщений вида `{ header, message }`
+* `id <Number>` - идентификатор сообщения
+* `messages <Array>` - список сообщений вида `{ header, message }`
 * `action <String>` (default: __NO__) - действие
 
 Возвращаемое значение:
-* `success \<Bool>`
+* `success <Bool>`
 
 Примеры использования:
 ```js
@@ -268,12 +271,12 @@ updateInfo(id, messages, actions.CLOSE)
 ```
 
 #### `updateError([options])`
-* `id \<Number>` - идентификатор сообщения
-* `messages \<Array>` - список сообщений вида `{ header, message }`
+* `id <Number>` - идентификатор сообщения
+* `messages <Array>` - список сообщений вида `{ header, message }`
 * `action <String>` (default: __CLOSE__) - действие
 
 Возвращаемое значение:
-* `success \<Bool>`
+* `success <Bool>`
 
 Примеры использования:
 ```js

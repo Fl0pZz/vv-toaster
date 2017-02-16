@@ -7,7 +7,7 @@
 </template>
 
 <script lang="babel">
-  import { pushInfo, pushError, updateError } from 'store/notifications/notification-wrappers'
+  import { pushInfo, pushError, updateError } from 'notifications/notification-wrappers'
 
   export default{
     name: 'pusher',
