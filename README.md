@@ -37,9 +37,9 @@ pushInfo({ header: 'header', message: 'Hello world!' })
 
 ### А как установить?
 ```bash
-// yarn
+# yarn
 yarn add vv-toaster
 
-// npm
+# npm
 npm i vv-toaster
 ```
