@@ -18,7 +18,6 @@ export const state = {
 }
 
 export default {
-  namespaced: true,
   state,
   getters,
   mutations,
