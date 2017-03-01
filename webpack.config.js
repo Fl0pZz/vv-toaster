@@ -9,10 +9,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
     libraryTarget: 'umd',
-    filename: 'build.js',
-    library: ['vv-toaster']
+    filename: 'vv-toaster.js',
+    library: 'vv-toaster'
   },
   module: {
     rules: [
@@ -47,11 +46,8 @@ module.exports = {
     ],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      'src': resolve('src'),
       'components': resolve('src/components'),
-      'store': resolve('examples/store'),
-      'examples': resolve('examples'),
-      'notifications': resolve('src/store/notifications')
+      // 'store': resolve('examples/store')
     }
   },
   devServer: {
