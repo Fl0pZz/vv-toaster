@@ -10,7 +10,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vv-toaster.js'
+    filename: 'vv-toaster.common.js',
+    libraryTarget: 'commonjs'
   },
   module: {
     rules: [

@@ -8,6 +8,8 @@ import {
   updateInfo,
   updateError
 } from './store/notifications/notification-wrappers'
+import * as types from './store/notifications/notification-types'
+import * as actionTypes from './store/notifications/notification-types'
 
 export {
   Toaster,
@@ -17,7 +19,9 @@ export {
   pushError,
   updateNotice,
   updateInfo,
-  updateError
+  updateError,
+  types,
+  actionTypes
 }
 
 
