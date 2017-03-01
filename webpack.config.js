@@ -10,8 +10,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vv-toaster.common.js',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'umd',
+    filename: 'build.js',
+    library: ['vv-toaster']
   },
   module: {
     rules: [
