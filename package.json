@@ -1,18 +1,13 @@
 {
   "name": "vv-toaster",
   "main": "dist/vv-toaster.js",
-  "files": [
-    "dist/vv-toaster.js",
-    "src/store",
-    "src/components"
-  ],
   "description": "Notification stack based on vue + vuex",
   "keywords": [
     "vue",
     "vuex",
     "notifications"
   ],
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "MIT",
   "author": "Fakhreev Rafael <fahreevrafael@yandex.ru>",
   "repository": {

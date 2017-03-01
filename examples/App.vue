@@ -6,7 +6,7 @@
 </template>
 
 <script lang="babel">
-import Toaster from 'components/default/toastmanager/Toaster'
+import { Toaster } from '../src/index'
 import Pusher from 'examples/components/pusher/Pusher'
 
 export default {

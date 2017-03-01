@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import notification from 'notifications/index'
+import { notification } from '../../src/index'
 
 Vue.use(Vuex)
 
@@ -11,17 +11,5 @@ const store = new Vuex.Store({
   strict: debug,
   modules: { notification }
 })
-
-if (module.hot) {
-  module.hot.accept([
-    'notifications/index'
-  ], () => {
-    store.hotUpdate({
-      modules: {
-        notification: require('notifications/index').default
-      }
-    })
-  })
-}
 
 export default store
