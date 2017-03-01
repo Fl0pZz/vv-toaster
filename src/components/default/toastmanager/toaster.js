@@ -28,8 +28,8 @@ export default {
   },
 
   computed: mapGetters({
-      isEmpty: 'notification/isEmpty',
-      updated: 'notification/lastUpdated'
+      isEmpty: 'isEmpty',
+      updated: 'lastUpdated'
     }),
 
   methods: {
@@ -75,10 +75,10 @@ export default {
       })
     },
 
-    ...mapActions({
-      pop_back: 'notification/pop_back',
-      get: 'notification/get',
-      del: 'notification/del'
-    })
+    ...mapActions([
+      'pop_back',
+      'get',
+      'del'
+    ])
   }
 }
