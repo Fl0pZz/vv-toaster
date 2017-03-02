@@ -7,12 +7,12 @@ export default class Toaster {
   constructor(store, namespaced = false) {
     this._store = store
     this._prefix = namespaced ? 'notification/' : ''
+    console.log('init Toaster')
   }
 
   static install (Vue, toaster) {
-    console.log('install Vue', Vue, toaster)
     Vue.prototype.$toaster = toaster
-    console.log('done', Vue)
+    console.log('install')
   }
 
   pushNotice (notification) {

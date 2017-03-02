@@ -8,7 +8,7 @@
     "vuex",
     "notifications"
   ],
-  "version": "0.1.14",
+  "version": "0.1.15",
   "license": "MIT",
   "author": "Fakhreev Rafael <fahreevrafael@yandex.ru>",
   "repository": {
