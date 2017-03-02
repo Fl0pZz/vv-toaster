@@ -1,7 +1,7 @@
 import * as nTypes from './store/notifications/notification-types'
 import * as nActionTypes from './store/notifications/notification-action-types'
 
-class Toaster {
+export default class Toaster {
   constructor(store, namespaced = false) {
     this._store = store
     this._prefix = namespaced ? 'notification/' : ''
