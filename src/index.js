@@ -9,7 +9,7 @@ export default class Toaster {
     this._prefix = namespaced ? 'notification/' : ''
   }
 
-  install (Vue, toaster) {
+  static install (Vue, toaster) {
     Vue.prototype.$toaster = toaster
   }
 
