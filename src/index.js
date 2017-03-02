@@ -12,10 +12,7 @@ export {
   ToasterManager
 }
 
-export default {
-  install (Vue, toaster) {
-    Vue.prototype.$toaster = toaster
-    console.log('install')
-  },
-  Toaster
+export default function install (Vue, toaster) {
+  Vue.prototype.$toaster = toaster
+  console.log('install')
 }
