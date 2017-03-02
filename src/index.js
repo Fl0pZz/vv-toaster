@@ -1,4 +1,4 @@
-import notification from './store/notifications/index'
+import notificationStore from './store/notifications/index'
 import * as nTypes from './store/notifications/notification-types'
 import * as nActionTypes from './store/notifications/notification-action-types'
 import ToasterManager from './components/default/toastmanager/Toaster.vue'
@@ -10,7 +10,9 @@ export default class Toaster {
   }
 
   static install (Vue, toaster) {
+    console.log('install Vue', Vue, toaster)
     Vue.prototype.$toaster = toaster
+    console.log('done', Vue)
   }
 
   pushNotice (notification) {
@@ -55,7 +57,7 @@ export default class Toaster {
 }
 
 export {
-  notification,
+  notificationStore,
   Toaster,
   nTypes,
   nActionTypes,
